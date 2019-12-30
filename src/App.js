@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Provider} from "react-redux";
+import store from "./app/store";
+import LoginContainer from "./app/login/container/LoginContainer";
+import AlertContainer from "./app/common/alert/container/AlertContainer";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <LoginContainer/>
+      <AlertContainer/>
+    </Provider>
   );
-}
+};
 
 export default App;
