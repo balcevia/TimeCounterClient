@@ -1,5 +1,7 @@
 import types from './types';
 import {createRequestAction} from "../../utils";
+import {setToken} from "../../jwt-utils";
+import {push} from 'connected-react-router'
 
 const sendLoginRequest = (formValues) => (dispatch) => {
   return dispatch(createRequestAction({
@@ -7,8 +9,13 @@ const sendLoginRequest = (formValues) => (dispatch) => {
     url: 'login',
     method: 'POST',
     body: formValues,
-    successHandler: data => console.log(data)
-  }))
+    successHandler: data => {
+      setToken(data.token);
+      return data.token
+    }
+  })).then(() => {
+    dispatch(push("/home"))
+  });
 };
 
 export default {
