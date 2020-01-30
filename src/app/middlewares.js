@@ -11,15 +11,16 @@ export const requestActionMiddleware = ({dispatch}) => next => action => {
       if(response.status === 200 || response.status === 201) {
         return response.json()
       }
-
-      dispatch(alertOperations.showAlert(response.statusText));
+      const message = response.status === 401 ? "Unauthorized" : "Error";
+      dispatch(alertOperations.showAlert(message));
       return Promise.reject(response.statusText);
     }).then(data => {
+      const successData = action.successHandler ? action.successHandler(data) : data;
             dispatch({
                 type: action.types.FULFILLED,
-                payload: action.successHandler(data)
+                payload: successData
             });
-            return Promise.resolve(action.successHandler(data))
+            return Promise.resolve(successData);
     }).catch(error => {
         dispatch({type: action.types.REJECTED});
         return Promise.reject(error);

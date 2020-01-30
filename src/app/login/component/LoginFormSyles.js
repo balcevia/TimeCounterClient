@@ -19,7 +19,7 @@ export const StyledPaper = styled(Paper)`
   justify-content: space-around;
   align-items: center;
   width: 30%;
-  height: 300px;
+  height: 350px;
   margin: 30px auto;
 `;
 

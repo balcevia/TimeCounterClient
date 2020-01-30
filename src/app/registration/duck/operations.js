@@ -1,18 +1,18 @@
 import types from './types';
 import {createRequestAction} from "../../utils";
-import {push} from 'connected-react-router'
+import {push} from "connected-react-router";
 
-const sendLoginRequest = (formValues) => (dispatch) => {
+const onSubmit = (formValues) => (dispatch) => {
   return dispatch(createRequestAction({
-    types: types.SEND_LOGIN_REQUEST,
-    url: 'login',
+    types: types.SEND_REGISTRATION_REQUEST,
+    url: 'users',
     method: 'POST',
     body: formValues
   })).then(() => {
-    dispatch(push("/home"))
+    dispatch(push("/login"))
   });
 };
 
 export default {
-  sendLoginRequest
+  onSubmit
 }

@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import loginOperations from '../duck/operations';
 
-const LoginContainer = ({loginOperations}) => {
+const LoginContainer = ({loginOperations, history}) => {
   return (
-    <LoginForm onSubmit={loginOperations.sendLoginRequest}/>
+    <LoginForm onSubmit={loginOperations.sendLoginRequest} history={history}/>
   )
 };
 
